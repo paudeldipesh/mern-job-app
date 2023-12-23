@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
-import FormRow from "../components/FormRow";
+import { Logo, FormRow } from "../components";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 
 export default function Register() {
