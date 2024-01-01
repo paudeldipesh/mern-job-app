@@ -6,6 +6,11 @@ import {
   DashboardLayout,
   Landing,
   Error,
+  AddJob,
+  Stats,
+  Admin,
+  Profile,
+  AllJobs,
 } from "../pages";
 
 export default function AllRoutes() {
@@ -30,6 +35,28 @@ export default function AllRoutes() {
         {
           path: "dashboard",
           element: <DashboardLayout />,
+          children: [
+            {
+              index: true,
+              element: <AddJob />,
+            },
+            {
+              path: "stats",
+              element: <Stats />,
+            },
+            {
+              path: "all-jobs",
+              element: <AllJobs />,
+            },
+            {
+              path: "profile",
+              element: <Profile />,
+            },
+            {
+              path: "admin",
+              element: <Admin />,
+            },
+          ],
         },
       ],
     },
