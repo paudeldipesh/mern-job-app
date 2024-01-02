@@ -13,6 +13,14 @@ import {
   AllJobs,
 } from "../pages";
 
+const checkDefaultTheme = () => {
+  const isDarkTheme = localStorage.getItem("darkTheme") === "true";
+  document.body.classList.toggle("dark-theme", isDarkTheme);
+  return isDarkTheme;
+};
+
+const isDarkThemeEnabled = checkDefaultTheme();
+
 export default function AllRoutes() {
   const router = createBrowserRouter([
     {
@@ -34,7 +42,7 @@ export default function AllRoutes() {
         },
         {
           path: "dashboard",
-          element: <DashboardLayout />,
+          element: <DashboardLayout isDarkThemeEnabled={isDarkThemeEnabled} />,
           children: [
             {
               index: true,
