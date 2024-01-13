@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 // Routers
 import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
+import userRouter from "./routes/userRouter.js";
 // Middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/jobs", authenticateUser, jobRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/users", authenticateUser, userRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
@@ -38,7 +40,7 @@ const port = process.env.PORT || 3000;
 try {
   await mongoose.connect(process.env.MONGO_URL);
   app.listen(port, () => {
-    console.log(`server running on http://localhost:${port}`);
+    console.log(`Server running on http://localhost:${port}.`);
   });
 } catch (error) {
   console.log(error.message);
