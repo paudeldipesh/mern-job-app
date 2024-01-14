@@ -1,0 +1,19 @@
+{
+  "name": "mern-job-app",
+  "version": "1.0.0",
+  "description": "job tracking application",
+  "main": "backend/server.js",
+  "scripts": {
+    "setup-project": "npm i && cd backend && npm i && cd ../frontend && npm i",
+    "server": "cd backend && nodemon server.js",
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}
