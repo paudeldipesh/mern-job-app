@@ -12,7 +12,9 @@ import {
   Profile,
   AllJobs,
 } from "../pages";
-import { action as registerAction } from "../pages";
+import { action as registerAction } from "../pages/Register";
+import { action as loginAction } from "../pages/Login";
+import { loader as dashboardLoader } from "../pages/DashboardLayout";
 
 const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -41,10 +43,12 @@ export default function AllRoutes() {
         {
           path: "login",
           element: <Login />,
+          action: loginAction,
         },
         {
           path: "dashboard",
           element: <DashboardLayout isDarkThemeEnabled={isDarkThemeEnabled} />,
+          loader: dashboardLoader,
           children: [
             {
               index: true,
