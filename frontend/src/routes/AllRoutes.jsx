@@ -12,6 +12,7 @@ import {
   Profile,
   AllJobs,
 } from "../pages";
+import { action as registerAction } from "../pages";
 
 const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -35,6 +36,7 @@ export default function AllRoutes() {
         {
           path: "register",
           element: <Register />,
+          action: registerAction,
         },
         {
           path: "login",
