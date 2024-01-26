@@ -22,6 +22,7 @@ import { loader as allJobsLoader } from "../pages/AllJobs";
 import { action as editJobAction } from "../pages/EditJob";
 import { loader as editJobLoader } from "../pages/EditJob";
 import { action as deleteJobAction } from "../pages/DeleteJob";
+import { loader as adminLoader } from "../pages/Admin";
 
 const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -78,6 +79,7 @@ export default function AllRoutes() {
             {
               path: "admin",
               element: <Admin />,
+              loader: adminLoader,
             },
             {
               path: "edit-job/:id",
