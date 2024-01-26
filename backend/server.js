@@ -13,10 +13,23 @@ import userRouter from "./routes/userRouter.js";
 // Middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
+// Public
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+// Cloudinary
+import cloudinary from "cloudinary";
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 app.use(cookieParser());
 app.use(express.json());

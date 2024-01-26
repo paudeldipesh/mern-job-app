@@ -10,3 +10,4 @@ export { default as ThemeToggle } from "./ThemeToggle";
 export { default as JobsContainer } from "./JobsContainer";
 export { default as SearchContainer } from "./SearchContainer";
 export { default as StatsItem } from "./StatsItem";
+export { default as SubmitBtn } from "./SubmitBtn";

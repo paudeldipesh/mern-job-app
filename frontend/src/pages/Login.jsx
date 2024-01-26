@@ -1,11 +1,5 @@
-import {
-  Link,
-  Form,
-  redirect,
-  useNavigation,
-  useActionData,
-} from "react-router-dom";
-import { Logo, FormRow } from "../components";
+import { Link, Form, redirect } from "react-router-dom";
+import { Logo, FormRow, SubmitBtn } from "../components";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
@@ -15,6 +9,7 @@ export const action = async ({ request }) => {
   const data = Object.fromEntries(formData);
 
   const errors = { msg: "" };
+
   if (data.password.length < 3) {
     errors.msg = "password too short";
     return errors;
@@ -31,9 +26,6 @@ export const action = async ({ request }) => {
 };
 
 export default function Login() {
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
-
   return (
     <Wrapper>
       <Form method="post" className="form">
@@ -44,13 +36,15 @@ export default function Login() {
           name="email"
           defaultValue="dipeshpaudel@gmail.com"
         />
+
         <FormRow type="password" name="password" defaultValue="12345678" />
-        <button type="submit" className="btn btn-block" disabled={isSubmitting}>
-          {isSubmitting ? "submitting..." : "submit"}
-        </button>
+
+        <SubmitBtn />
+
         <button type="button" className="btn btn-block">
           explore the app
         </button>
+
         <p>
           Not a member yet?
           <Link to="/register" className="member-btn">

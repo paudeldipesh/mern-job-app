@@ -14,7 +14,11 @@ export default function LogoutContainer() {
         className="btn logout-btn"
         onClick={() => setShowLogout((cur) => !cur)}
       >
-        <FaUserCircle />
+        {user.avatar ? (
+          <img src={user.avatar} className="img" alt={user.name} />
+        ) : (
+          <FaUserCircle />
+        )}
         {user?.name}
         <FaCaretDown />
       </button>
