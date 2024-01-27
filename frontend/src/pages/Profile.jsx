@@ -16,9 +16,11 @@ export const action = async ({ request }) => {
   try {
     await customFetch.patch("/users/update-user", formData);
     toast.success("profile updated successfully");
-  } catch (error) {}
-
-  return null;
+    return redirect("/dashboard");
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return null;
+  }
 };
 
 export default function Profile() {

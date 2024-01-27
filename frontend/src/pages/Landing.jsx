@@ -17,13 +17,13 @@ export default function Landing() {
           <p>
             Jobify is a full-stack MERN application designed to store job
             applications, aimed at revolutionizing the way you manage your job
-            applications
+            applications.
           </p>
           <Link to="/register" className="btn register-link">
             Register
           </Link>
           <Link to="/login" className="btn">
-            Login / Demo User
+            Login / Test User
           </Link>
         </div>
         <img src={main} className="img main-img" alt="hero icon" />

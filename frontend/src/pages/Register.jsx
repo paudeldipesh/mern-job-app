@@ -24,24 +24,15 @@ export default function Register() {
       <Form method="post" className="form">
         <Logo />
         <h4>Register</h4>
-        <FormRow type="text" name="name" defaultValue="Dipesh" />
+        <FormRow type="text" name="name" />
 
-        <FormRow
-          type="text"
-          name="lastName"
-          labelText="last name"
-          defaultValue="Paudel"
-        />
+        <FormRow type="text" name="lastName" labelText="last name" />
 
-        <FormRow type="text" name="location" defaultValue="Nepal" />
+        <FormRow type="text" name="location" />
 
-        <FormRow
-          type="email"
-          name="email"
-          defaultValue="dipeshpaudel@gmail.com"
-        />
+        <FormRow type="email" name="email" />
 
-        <FormRow type="password" name="password" defaultValue="12345678" />
+        <FormRow type="password" name="password" />
 
         <SubmitBtn />
 
