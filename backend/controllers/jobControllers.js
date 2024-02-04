@@ -8,7 +8,6 @@ export const getJobs = async (req, res) => {
 
   const queryObject = {
     createdBy: req.user.userId,
-    jobStatus,
   };
 
   if (search) {

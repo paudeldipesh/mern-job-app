@@ -3,6 +3,7 @@ export default function FormRowSelect({
   labelText,
   list,
   defaultValue = "",
+  onChange,
 }) {
   return (
     <div className="form-row">
@@ -14,6 +15,7 @@ export default function FormRowSelect({
         id={name}
         className="form-select"
         defaultValue={defaultValue}
+        onChange={onChange}
       >
         {list.map((itemValue) => {
           return (
