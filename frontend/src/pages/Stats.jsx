@@ -1,18 +1,23 @@
-import { useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { ChartsContainer, StatsContainer } from "../components";
 import customFetch from "../utils/customFetch";
 
-export const loader = async () => {
-  try {
+const statsQuery = {
+  queryKey: ["stats"],
+  queryFn: async () => {
     const response = await customFetch.get("/jobs/stats");
     return response.data;
-  } catch (error) {
-    return error;
-  }
+  },
+};
+
+export const loader = (queryClient) => async () => {
+  return await queryClient.ensureQueryData(statsQuery);
 };
 
 export default function Stats() {
-  const { defaultStats, monthlyApplications } = useLoaderData();
+  const { data } = useQuery(statsQuery);
+
+  const { defaultStats, monthlyApplications } = data;
 
   return (
     <>

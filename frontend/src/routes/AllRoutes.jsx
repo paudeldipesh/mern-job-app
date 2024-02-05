@@ -25,6 +25,7 @@ import { action as deleteJobAction } from "../pages/DeleteJob";
 import { loader as adminLoader } from "../pages/Admin";
 import { action as profileAction } from "../pages/Profile";
 import { loader as statsLoader } from "../pages/Stats";
+import { ErrorElement } from "../components";
 
 const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -34,7 +35,7 @@ const checkDefaultTheme = () => {
 
 const isDarkThemeEnabled = checkDefaultTheme();
 
-export default function AllRoutes() {
+export default function AllRoutes({ queryClient }) {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -53,32 +54,39 @@ export default function AllRoutes() {
         {
           path: "login",
           element: <Login />,
-          action: loginAction,
+          action: loginAction(queryClient),
         },
         {
           path: "dashboard",
-          element: <DashboardLayout isDarkThemeEnabled={isDarkThemeEnabled} />,
-          loader: dashboardLoader,
+          element: (
+            <DashboardLayout
+              isDarkThemeEnabled={isDarkThemeEnabled}
+              queryClient={queryClient}
+            />
+          ),
+          loader: dashboardLoader(queryClient),
           children: [
             {
               index: true,
               element: <AddJob />,
-              action: addJobAction,
+              action: addJobAction(queryClient),
             },
             {
               path: "stats",
               element: <Stats />,
-              loader: statsLoader,
+              loader: statsLoader(queryClient),
+              errorElement: <ErrorElement />,
             },
             {
               path: "all-jobs",
               element: <AllJobs />,
-              loader: allJobsLoader,
+              loader: allJobsLoader(queryClient),
+              errorElement: <ErrorElement />,
             },
             {
               path: "profile",
               element: <Profile />,
-              action: profileAction,
+              action: profileAction(queryClient),
             },
             {
               path: "admin",
@@ -88,12 +96,12 @@ export default function AllRoutes() {
             {
               path: "edit-job/:id",
               element: <EditJob />,
-              loader: editJobLoader,
-              action: editJobAction,
+              loader: editJobLoader(queryClient),
+              action: editJobAction(queryClient),
             },
             {
               path: "delete-job/:id",
-              action: deleteJobAction,
+              action: deleteJobAction(queryClient),
             },
           ],
         },

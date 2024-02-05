@@ -4,24 +4,27 @@ import { FormRow, SubmitBtn } from "../components";
 import customFetch from "../utils/customFetch";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const file = formData.get("avatar");
+export const action =
+  (queryClient) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const file = formData.get("avatar");
 
-  if (file && file.size > 500000) {
-    toast.error("image size to large");
-    return null;
-  }
+    if (file && file.size > 500000) {
+      toast.error("image size to large");
+      return null;
+    }
 
-  try {
-    await customFetch.patch("/users/update-user", formData);
-    toast.success("profile updated successfully");
-    return redirect("/dashboard");
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return null;
-  }
-};
+    try {
+      await customFetch.patch("/users/update-user", formData);
+      queryClient.invalidateQueries(["user"]);
+      toast.success("profile updated successfully");
+      return redirect("/dashboard");
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      return null;
+    }
+  };
 
 export default function Profile() {
   const { user } = useOutletContext();

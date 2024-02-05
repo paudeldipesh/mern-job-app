@@ -23,6 +23,10 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 });
+// Helmet
+import helmet from "helmet";
+// Sanitizer
+import mongoSanitize from "express-mongo-sanitize";
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -33,14 +37,8 @@ app.use(express.static(path.resolve(__dirname, "../frontend/dist")));
 
 app.use(cookieParser());
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
-app.get("/api/test", (req, res) => {
-  res.json({ msg: "you are in test route" });
-});
+app.use(helmet());
+app.use(mongoSanitize());
 
 app.use("/api/jobs", authenticateUser, jobRouter);
 app.use("/api/auth", authRouter);
