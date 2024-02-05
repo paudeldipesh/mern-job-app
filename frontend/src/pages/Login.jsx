@@ -47,7 +47,9 @@ export default function Login() {
     <Wrapper>
       <Form method="post" className="form">
         <Logo />
+
         <h4>login</h4>
+
         <FormRow type="email" name="email" />
 
         <FormRow type="password" name="password" />
