@@ -7,8 +7,11 @@
   "scripts": {
     "build": "node server"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "MERN Stack Job Tracking Application",
+    "Jobify - Store Your Job Applications"
+  ],
+  "author": "Dipesh Paudel",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
