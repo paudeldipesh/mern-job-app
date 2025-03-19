@@ -3,6 +3,8 @@ import express from "express";
 const app = express();
 import morgan from "morgan";
 import * as dotenv from "dotenv";
+import cors from "cors";
+app.use(cors());
 dotenv.config();
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
