@@ -4,7 +4,11 @@ const app = express();
 import morgan from "morgan";
 import * as dotenv from "dotenv";
 import cors from "cors";
-app.use(cors());
+const corsOptions = {
+  origin: "https://react-job-app.netlify.app",
+  credentials: true,
+};
+app.use(cors(corsOptions));
 dotenv.config();
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
