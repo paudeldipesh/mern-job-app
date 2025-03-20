@@ -5,7 +5,7 @@ import morgan from "morgan";
 import * as dotenv from "dotenv";
 import cors from "cors";
 const corsOptions = {
-  origin: "https://react-job-app.netlify.app",
+  origin: ["https://react-job-app.netlify.app", "http://localhost:5173"],
   credentials: true,
 };
 app.use(cors(corsOptions));
